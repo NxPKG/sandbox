@@ -1,0 +1,50 @@
+{
+  "name": "sandbox",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n frontend,backend -c 'auto' 'pnpm run frontend' 'pnpm run backend'",
+    "build": "vue-tsc && vite build",
+    "frontend": "vite",
+    "backend": "wrangler pages dev ./",
+    "preview": "vite preview",
+    "db:generate": "drizzle-kit generate:sqlite --schema=./db/schema.ts --out=./migrations",
+    "db:migrate": "wrangler d1 migrations apply DB --local",
+    "db:migrate:production": "wrangler d1 migrations apply DB",
+    "db:up": "drizzle-kit up:sqlite",
+    "format": "pnpm prettier --write .",
+    "format:check": "pnpm prettier --check ."
+  },
+  "dependencies": {
+    "@headlessui/vue": "^1.7.17",
+    "@scalar/openapi-parser": "^0.8.9",
+    "@scalar/themes": "^0.9.47",
+    "@scalar/types": "^0.0.19",
+    "@vueuse/core": "^10.7.2",
+    "drizzle-orm": "^0.32.2",
+    "monaco-editor": "^0.50.0",
+    "nanoid": "^5.0.4",
+    "oh-vue-icons": "1.0.0-rc3",
+    "vue": "3.4.36",
+    "vue-plugin-load-script": "^2.1.1",
+    "vue-router": "^4.4.3",
+    "vue-sonner": "^1.1.4",
+    "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@vitejs/plugin-vue": "^5.1.2",
+    "concurrently": "^8.2.2",
+    "drizzle-kit": "^0.23.2",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier-vue": "^5.0.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vue-tsc": "^2.0.29",
+    "wrangler": "^3.69.1"
+  }
+}
